@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    h1 {text-align: center;}
+    h2{text-align: center;}
+    table {align: center;}
+    </style>
+<h1>Hello {{request.user.first_name}}</h1><br><br>
+<h2>Available courses</h2>
+<table border="black" align="center">
+ <tr>   
+{% for c in object_list %}
+<div class="row">
+    <th>
+        {{c.course_name}}
+    </th><th>
+     {{c.duration}}
+    </th><th>
+    {{c.university}}
+    </th><th>
+    {{c.faculty}}
+    </th><th>
+    {{c.created_date}}
+    </th>
+    <th>
+<a href="{% url 'course-detail' c.id %}">View details</a>
+    </th>
+</tr>
+{% endfor %}
+
+</tr>
+</table>
+{% endblock %}
