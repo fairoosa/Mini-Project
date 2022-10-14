@@ -55,4 +55,3 @@ class FacultyPage(generic.CreateView):
             print("uuu", faculty.errors)
         print("aaaa",address.errors)
         return redirect(reverse_lazy("login"))
-
