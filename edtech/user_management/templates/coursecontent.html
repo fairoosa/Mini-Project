@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for c in object_list %}
+   <div><h1 align="center">{{c.course}}</h1></div> 
+   <div> <h2>{{c.week_no}}</h2></div> 
+
+  <div> <h2>{{c.content}}</h2></div> 
+  <div>
+    <video width="320" height="240" controls>
+    <source src="{{c.video.url}}" type="video/mp4">
+    Your browser does not support the video tag.
+    </video> </div>
+
+  <div>
+    <p>Open a PDF file <a href="{{c.pdf.url}}">example</a>
+  </div>
+{% endfor %}
+
+{% endblock %}

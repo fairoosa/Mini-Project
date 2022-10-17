@@ -14,3 +14,13 @@ class Course(models.Model):
 
     def __str__(self):
         return self.course_name
+
+
+class CourseContent(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    week_no = models.IntegerField(null = True, blank = True)
+    video = models.FileField(null = True, blank = True)
+    content = models.TextField(null = True, blank = True)
+    pdf = models.FileField(null = True, blank = True)
+
+    # quiz = models.CharField(null = True, blank = True)

@@ -4,21 +4,19 @@
 <style>
     h1 {text-align: left;
         margin-top: 1px;}
-    h2{text-align: left;
-        margin-top:30px;}
+
 
     </style>
-<h1>Hello {{request.user.first_name}}</h1><br>
 
 <div>
-    <h2>Available courses</h2>
-    </div><br><br>
+    <h1>Available courses</h1>
+    </div>
     {% for c in object_list %}
     <div class="card">
         <div class="card-header">{{c.course_name}}</div>
         <div class="card-body">
-          <h5 class="card-title">{{c.faculty}}</h5>
-          <p class="card-text">{{c.university}}</p>
+          <h5 class="card-title" >Prof.{{c.faculty}}</h5>
+          <p class="card-text">University:{{c.university}}</p>
           <p class="card-text">{{c.duration}}</p>
           <a href="{% url 'course-detail' c.id %}" class="btn btn-primary">View Details</a>
         </div>

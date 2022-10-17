@@ -1,5 +1,5 @@
 from django.contrib import admin
-from admin_management.models import Address
+from .models import CourseContent, Course
 
-# Register your models here.
-admin.site.register(Address)
+admin.site.register(CourseContent)
+admin.site.register(Course)

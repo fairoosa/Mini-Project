@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegisterationForm, AddressRegisterationForm, UserLoginForm
-from Course.models import Course
+from Course.models import Course, CourseContent
 
 
 class LoginPage(generic.TemplateView):
@@ -48,6 +48,12 @@ class HomePage(generic.ListView):
     template_name = "home.html"
     model = Course
 
+
+class HomePage1(generic.ListView):
+    template_name = "home1.html"
+    model = Course
+
+
 class LogoutPage(generic.View):
 
     def get(self, request, *args, **kwagrs):
@@ -60,6 +66,9 @@ class CourseDetails(generic.DetailView):
     template_name = "coursedetail.html"
     model=Course
 
+class CoursecontentPage(generic.ListView):
+    template_name = "coursecontent.html"
+    model=CourseContent
 
 
     
