@@ -23,4 +23,16 @@ class CourseContent(models.Model):
     content = models.TextField(null = True, blank = True)
     pdf = models.FileField(null = True, blank = True)
 
+
+
+
+class Quiz(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    question = models.TextField(null = True, blank = True)
+    answer = models.TextField(null = True, blank = True)
+    option1 = models.TextField(null = True, blank = True)
+    option2 = models.TextField(null = True, blank = True)
+    option3 = models.TextField(null = True, blank = True)
+    option4 = models.TextField(null = True, blank = True)
+
     # quiz = models.CharField(null = True, blank = True)
