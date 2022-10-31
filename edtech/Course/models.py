@@ -19,7 +19,9 @@ class Course(models.Model):
 class CourseContent(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     week_no = models.IntegerField(null = True, blank = True)
+    Title = models.TextField(null = True, blank = True)
     video = models.FileField(null = True, blank = True)
+    youtubelink = models.CharField(null = True, blank = True,max_length=300)
     content = models.TextField(null = True, blank = True)
     pdf = models.FileField(null = True, blank = True)
 

@@ -28,4 +28,5 @@ urlpatterns = [
     path("logout", views.LogoutPage.as_view(), name="logout"),
     path("content",views.CoursecontentPage.as_view(), name="content"),
     path("course-detail/<int:pk>",views.CourseDetails.as_view(), name="course-detail"),
+    path("quiz",views.QuizPage.as_view(), name="quiz"),
 ]

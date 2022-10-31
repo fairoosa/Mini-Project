@@ -2,18 +2,32 @@
 {% block content %}
 {% for c in object_list %}
    <div><h1 align="center">{{c.course}}</h1></div> 
-   <div> <h2>{{c.week_no}}</h2></div> 
 
-  <div> <h2>{{c.content}}</h2></div> 
+   <div class="gcb-video-container">
+
+    <div> <h2>{{c.content}}</h2></div>
+    <div> <h2>Week  :  {{c.week_no}}</h2></div> 
+    <div> <h2> {{c.Title}}</h2></div> 
+
+    <iframe id="videoDiv" allowfullscreen="1" allow={{c.Title}} src="https://www.youtube.com/embed/9MmC_uGjBsM?rel=0&amp;showinfo=0&amp;ecver=2&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fonlinecourses.nptel.ac.in&amp;widgetid=1" width="100%" height="500px" frameborder="0"></iframe>
+     <br>
+  </div>
+  {% if c.pdf %}
+  <div>
+    <p>Click here to download the <a href="{{c.pdf.url}}">lecture materials</a>
+  </div>
+{% endif %}
+{% if c.video %}
   <div>
     <video width="320" height="240" controls>
     <source src="{{c.video.url}}" type="video/mp4">
     Your browser does not support the video tag.
     </video> </div>
+{% endif %}
 
-  <div>
-    <p>Open a PDF file <a href="{{c.pdf.url}}">example</a>
-  </div>
+
 {% endfor %}
-
+<div>
+  <p>Click here  <a href="{% url 'quiz' %}">Online assesment</a>
+</div>
 {% endblock %}

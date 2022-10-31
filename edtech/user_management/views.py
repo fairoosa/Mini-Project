@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegisterationForm, AddressRegisterationForm, UserLoginForm
-from Course.models import Course, CourseContent
+from Course.models import Course, CourseContent,  Quiz
 
 
 class LoginPage(generic.TemplateView):
@@ -69,6 +69,10 @@ class CourseDetails(generic.DetailView):
 class CoursecontentPage(generic.ListView):
     template_name = "coursecontent.html"
     model=CourseContent
+
+class QuizPage(generic.ListView):
+    template_name = "quiz.html"
+    model=Quiz
 
 
     
