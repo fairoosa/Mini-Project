@@ -2,9 +2,19 @@
     <h1 align="center">{{object.course}}</h1>
     <h2>{{object.duration}}</h2>
     <h2>{{object.university}}</h2>
-    <h2>{{object.description}}</h2>
+    <div>
+      <h2>{{object.description}}</h2>
+    </div>
     <h2>{{object.faculty}}</h2>
     <h2>{{object.created_date}}</h2>
+    </div>
     <div>
-    <h2>contents: <a href="{% url 'content' %}">Click here</a></h2>
-  </div></from>
+      <H2><B>COURSE LAYOUT</B>
+      </H2><br>{{object.course_layout}}</from>
+    </div>
+    <div>
+      <h2><B>CERTIFICATE</B></h2><br>{{object.certificate}}
+    <div>
+      <h2>contents: <a href="{% url 'content' %}">Click here</a></h2>
+    </div>
+</from>

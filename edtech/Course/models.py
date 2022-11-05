@@ -10,6 +10,8 @@ class Course(models.Model):
     description = models.TextField()
     created_date = models.DateField()
     is_active = models.BooleanField(default=True)
+    course_layout = models.TextField(null = True, blank = True)
+    certificate = models.TextField(null = True, blank = True)
 
 
     def __str__(self):
