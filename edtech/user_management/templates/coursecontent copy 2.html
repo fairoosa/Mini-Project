@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Edtech</title>
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ </head>
+ 
+ <body>
+     <main class="container">
+         <section class="main-video">
+            {% if object_list.0.video.url %} 
+             <video src="http://127.0.0.1:8000/media/{{ object_list.0.video }}" controls autoplay muted width="800" height="400"></video>
+             <!-- <iframe id="videoDiv" allowfullscreen="1" allow={{c.Title}} src="https://www.youtube.com/embed/9MmC_uGjBsM?rel=0&amp;showinfo=0&amp;ecver=2&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fonlinecourses.nptel.ac.in&amp;widgetid=1" width="100%" height="500px" frameborder="0"></iframe> -->
+             {% endif %}
+             <h3 class="title">{{ object_list.0.Title }}</h3>
+         </section>
+         
+         <section class="video-playlist">
+             <h3 class="title">VIdeo Lectures</h3>
+             <p>{{object_list.count}} Lessons &nbsp; &nbsp;</p>
+             <div class="videos">
+            
+             </div>
+         </section>
+     </main>
+     <!-- <script src="{% static 'js/script.js' %}"></script> -->
+     <script>
+      const main_video = document.querySelector('.main-video video');
+      const main_video_title = document.querySelector('.main-video .title');
+      const video_playlist = document.querySelector('.video-playlist .videos');
+      x = "{% static 'images/pause.svg' %}"
+      let data = new Array()
+      {% for each in object_list %}
+      console.log("{{each.video}}".length > 0)
+        if ("{{each.video}}".length > 0){
+          name = "http://127.0.0.1:8000/media/{{each.video}}"
+        }else {
+          name = "novideo"
+        }
+        data.push(
+          {
+              'id': '{{each.id}}',
+              'title': '{{each.Title}}',
+              'name': name,
+              'duration': '2:47',
+          }
+        )  
+      {% endfor %}
+
+    
+      data.forEach((video, i) => {
+          let video_element = `
+                      <div class="video" data-id="${video.id}">
+                          <img src="{% static 'images/play.svg' %}" alt="">
+                          <p>${i + 1 > 9 ? i + 1 : '0' + (i + 1)}. </p>
+                          <h3 class="title">${video.title}</h3>
+                          <p class="time">${video.duration}</p>
+                      </div>
+          `;
+          video_playlist.innerHTML += video_element;
+      })
+
+      let videos = document.querySelectorAll('.video');
+      videos[0].classList.add('active');
+      videos[0].querySelector('img').src = "{% static 'images/pause.svg' %}";
+
+      videos.forEach(selected_video => {
+          selected_video.onclick = () => {
+
+              for (all_videos of videos) {
+                  all_videos.classList.remove('active');
+                  all_videos.querySelector('img').src = "{% static 'images/play.svg' %}";
+
+              }
+
+              selected_video.classList.add('active');
+              selected_video.querySelector('img').src = "{% static 'images/pause.svg' %}";
+
+              let match_video = data.find(video => video.id == selected_video.dataset.id);
+              main_video.src = match_video.name;
+              main_video_title.innerHTML = match_video.title;
+          }
+      });
+     </script>
+ </body>
+ 
+ </html>

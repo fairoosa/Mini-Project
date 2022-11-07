@@ -26,7 +26,7 @@ urlpatterns = [
     path("home", views.HomePage.as_view(), name="home"),
     path("home1", views.HomePage1.as_view(), name="home1"),
     path("logout", views.LogoutPage.as_view(), name="logout"),
-    path("content",views.CoursecontentPage.as_view(), name="content"),
+    path("content/<int:pk>",views.CoursecontentPage.as_view(), name="content"),
     path("course-detail/<int:pk>",views.CourseDetails.as_view(), name="course-detail"),
-    path("quiz",views.QuizPage.as_view(), name="quiz"),
+    path("quiz/<int:pk>",views.QuizPage.as_view(), name="quiz"),
 ]

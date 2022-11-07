@@ -70,6 +70,22 @@ class CoursecontentPage(generic.ListView):
     template_name = "coursecontent.html"
     model=CourseContent
 
+    def get_queryset(self, *args, **kwargs):
+        queryset = self.model.objects.filter(course__id=self.kwargs['pk'])
+        temp = []
+        num = 1
+        final_list = []
+        for i in queryset:
+            if i.week_no != num:
+                num = i.week_no
+                final_list.append(temp)
+                temp = []
+                temp.append(i)
+            else:
+                temp.append(i)
+        print(final_list)
+        return final_list
+
 class QuizPage(generic.ListView):
     template_name = "quiz.html"
     model=Quiz
